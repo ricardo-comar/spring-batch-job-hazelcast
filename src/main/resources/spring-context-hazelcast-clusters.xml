@@ -12,15 +12,25 @@
 
 	<hz:hazelcast id="instance">
 		<hz:config>
-			<hz:group name="dev" password="dev-pass" />
+			<hz:group name="${hazelcast.group.name}" password="${hazelcast.group.password}" />
 			<hz:properties>
 				<hz:property name="hazelcast.merge.first.run.delay.seconds">5</hz:property>
 				<hz:property name="hazelcast.merge.next.run.delay.seconds">5</hz:property>
 			</hz:properties>
-			<hz:network port="5701" port-auto-increment="true">
+			<hz:network port="${hazelcast.server.port}" port-auto-increment="${hazelcast.server.port.autoincrement}">
 				<hz:join>
-					<hz:multicast enabled="true" />
+					<hz:multicast enabled="false" />
+					<hz:tcp-ip enabled="true">
+						<hz:interface>${hazelcast.interface.one}</hz:interface>
+						<hz:interface>${hazelcast.interface.two}</hz:interface>
+						<hz:interface>${hazelcast.interface.three}</hz:interface>
+					</hz:tcp-ip>
 				</hz:join>
+				<hz:interfaces>
+					<hz:interface>${hazelcast.interface.one}</hz:interface>
+					<hz:interface>${hazelcast.interface.two}</hz:interface>
+					<hz:interface>${hazelcast.interface.three}</hz:interface>
+				</hz:interfaces>
 			</hz:network>
 		</hz:config>
 	</hz:hazelcast>

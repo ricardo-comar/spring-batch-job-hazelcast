@@ -11,15 +11,15 @@
           ">
 
 	 <hz:client id="hzClient">
-        <hz:group name="dev" password="dev-pass" />
+        <hz:group name="${hazelcast.group.name}" password="${hazelcast.group.password}" />
         <hz:network connection-attempt-limit="4" 
                     connection-attempt-period="5000" 
                     connection-timeout="5000"
                     redo-operation="true" 
                     smart-routing="true">
-            <hz:member>localhost:5701</hz:member>
-            <hz:member>localhost:5702</hz:member>
-            <hz:member>localhost:5703</hz:member>
+            <hz:member>${hazelcast.client.member.one}</hz:member>
+            <hz:member>${hazelcast.client.member.two}</hz:member>
+            <hz:member>${hazelcast.client.member.three}</hz:member>
         </hz:network>
      </hz:client>
 
