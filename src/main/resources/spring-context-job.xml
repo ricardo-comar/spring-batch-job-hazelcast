@@ -15,9 +15,18 @@
 
 
 	<task:annotation-driven executor="myExecutor" scheduler="myScheduler" />
-
-	<task:executor id="myExecutor" pool-size="5" />
-
-	<task:scheduler id="myScheduler" pool-size="10" />
-
-</beans>  
+	<task:executor id="myExecutor" pool-size="10" />
+	<task:scheduler id="myScheduler" pool-size="5" />
+	
+	<bean id="lockSchedule" class="br.comar.ricardo.stuff.concurrentjob.client.schedule.LockSchedule"
+		lazy-init="true">
+		<property name="hzClient" ref="hzClient"/>
+	</bean>
+	
+	<task:scheduled-tasks scheduler="myScheduler">
+		<task:scheduled ref="lockSchedule" method="doSomething" 
+			initial-delay="20000" fixed-delay="750"/>
+	</task:scheduled-tasks>
+	
+	
+</beans>

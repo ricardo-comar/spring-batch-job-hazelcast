@@ -7,7 +7,7 @@
           http://www.springframework.org/schema/beans
           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
           http://www.hazelcast.com/schema/spring
-          http://www.hazelcast.com/schema/spring/hazelcast-spring-2.0.xsd
+          http://www.hazelcast.com/schema/spring/hazelcast-spring-3.2.xsd
           ">
 
 	<hz:hazelcast id="instance">
@@ -19,7 +19,7 @@
 			</hz:properties>
 			<hz:network port="5701" port-auto-increment="true">
 				<hz:join>
-					<hz:multicast enabled="true"/>
+					<hz:multicast enabled="true" />
 				</hz:join>
 			</hz:network>
 		</hz:config>

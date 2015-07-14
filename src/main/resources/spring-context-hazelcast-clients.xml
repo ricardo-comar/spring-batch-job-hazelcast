@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:hz="http://www.hazelcast.com/schema/spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+          http://www.hazelcast.com/schema/spring
+          http://www.hazelcast.com/schema/spring/hazelcast-spring-3.2.xsd
+          ">
+
+	 <hz:client id="hzClient">
+        <hz:group name="dev" password="dev-pass" />
+        <hz:network connection-attempt-limit="4" 
+                    connection-attempt-period="5000" 
+                    connection-timeout="5000"
+                    redo-operation="true" 
+                    smart-routing="true">
+            <hz:member>localhost:5701</hz:member>
+            <hz:member>localhost:5702</hz:member>
+            <hz:member>localhost:5703</hz:member>
+        </hz:network>
+     </hz:client>
+
+</beans>
